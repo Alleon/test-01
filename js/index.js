@@ -13,7 +13,7 @@ function checkConnection() {
 	states[Connection.CELL_2G]  = 'Connexion cellulaire 2G';
 	states[Connection.CELL_3G]  = 'Connexion cellulaire 3G';
 	states[Connection.CELL_4G]  = 'Connexion cellulaire 4G';
-	states[Connection.NONE]     = 'Pas de connexion réseau';
+	states[Connection.NONE]     = 'Pas de connexion rÃ©seau';
 	myLog('Type de connexion : ' + states[networkState], "<hr />");
 }
 function geoLocation() {
@@ -25,16 +25,16 @@ function geoLocation() {
         window.geoLocWatchID = 0;
     }
 	function onSuccess(position) {
-		myLog(
-			'Latitude : '                + position.coords.latitude          + '<br/>' +
-			'Longitude : '               + position.coords.longitude         + '<br/>' +
-			'Altitude : '                + position.coords.altitude          + '<br/>' +
-			'Précision : '               + position.coords.accuracy          + '<br/>' +
-			'Précision de l altitude : ' + position.coords.altitudeAccuracy  + '<br/>' +
-			'Direction : '               + position.coords.heading           + '<br/>' +
-			'Vitesse : '                 + position.coords.speed             + '<br/>' +
-			'Date : '                    + new Date(position.timestamp)      + '<br/>', '<hr/>');
-		clearWatch();
+		myLog('<hr/> '+
+			'Latitude : '                + position.coords.latitude          + 
+			'Longitude : '               + position.coords.longitude         + 
+			//'Altitude : '                + position.coords.altitude          + '<br/>' +
+			'PrÃ©cision : '               + position.coords.accuracy          + '<br/>' +
+			/*'PrÃ©cision de l altitude : ' + position.coords.altitudeAccuracy  + '<br/>' +
+			'Direction : '               + position.coords.heading           + '<br/>' +*/
+			'Vitesse : '                 + position.coords.speed             + 
+			'Date : '                    + new Date(position.timestamp)      + '<br/>', '');
+		//clearWatch();
 	};
 
     function onError(error) {
