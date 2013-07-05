@@ -18,12 +18,6 @@ function checkConnection() {
 }
 function geoLocation() {
     window.geoLocWatchID = null;
-    function clearWatch() {
-        if (window.geoLocWatchID != null && window.geoLocWatchID!=0) {
-            navigator.geolocation.clearWatch(window.geoLocWatchID);
-        }
-        window.geoLocWatchID = 0;
-    }
 	function onSuccess(position) {
 		myLog('<hr/> '+
 			'Latitude : '                + position.coords.latitude          + 
@@ -34,25 +28,14 @@ function geoLocation() {
 			'Direction : '               + position.coords.heading           + '<br/>' +*/
 			'Vitesse : '                 + position.coords.speed             + 
 			'Date : '                    + new Date(position.timestamp)      + '<br/>', '');
-		//clearWatch();
 	};
-
     function onError(error) {
 		myLog('geoLocation error code : '    + error.code    + '\n' +
 			'message : ' + error.message + '\n', '<hr/>');
-		clearWatch();
     }
-
-
 	myLog('geoLocation ('+window.geoLocWatchID+') ... test ... ', '<br/>');
-	clearWatch();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
     window.geoLocWatchID = navigator.geolocation.watchPosition(onSuccess, onError,  { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
-
-    // clear the watch that was started earlier
-    // 
-
-	
 }
 var app = {
     // Application Constructor
