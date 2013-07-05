@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="touch_ui/touichui.css" />
+        <title>Salut Chris Grid !</title>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="touch_ui/touchui_debug.js"></script>
+    </head>
+    <body>
+		<h1> Grid ! </h1>
+		<div id="touchgrid" style="width:550px; height:350px"></div>
+		<button type="button" onclick="camclick()">camclick</button>
+		<button type="button" onclick="checkConnection()">checkConnection</button>
+		<button type="button" onclick="geoLocation()">geoLocation</button>	
+		<img id="monImage" />
+		<div id="divConsole"> Console:</div>
+	</body>
+</html>
+<script type="text/javascript">
+	/*var data=[
+		{ id:  1,  nom:"Kill"	,  prenom:"John"		}, 
+		{ id:  2,  nom:"Smoke"	,  prenom:"Stephen"		},
+		{ id:  3,  nom:"Rainmaker", prenom:"Grisham"	}, 
+		{ id:  4,  nom:"Green"	,  prenom:"King"		},
+		{ id:  5,  nom:"Nom  5"	,  prenom:"Prénom  5"	},
+		{ id:  6,  nom:"Nom  6"	,  prenom:"Prénom  6"	},
+		{ id:  7,  nom:"Nom  7"	,  prenom:"Prénom  7"	},
+		{ id:  8,  nom:"Nom  8"	,  prenom:"Prénom  8"	},
+		{ id:  9,  nom:"Nom  9"	,  prenom:"Prénom  9"	},
+		{ id: 10,  nom:"Nom 10"	,  prenom:"Prénom 10"	},
+		{ id: 11,  nom:"Nom 11"	,  prenom:"Prénom 11"	},
+		{ id: 12,  nom:"Nom 12"	,  prenom:"Prénom 12"	}
+	];*/	
+	dhx.ui({
+		container:"touchgrid",
+		rows:[{	id:"idgrid", 
+				view:"grid",
+				fields:[
+					{	id:"id",	label:"id",		width:60	},
+					{	id:"nom",	label:"Nom",	width:250	},
+					{	id:"prenom",label:"Prénom",	width:250	}
+				],
+				datatype:"json", 				
+				url:"http://192.168.1.54/htdocs/tests/serverside/data.php?format=JSON"
+			},
+			{ view: 'toolbar', type: 'MainBar',
+				cols: [
+					{  view:"button", label:" autre ", click:'document.location.href = "demo.html"'},
+					{  view:"button", label:" suite ", click:'$$("idgrid").loadNext(22);'},
+					{  view:"button", label:"CamClick", click:'camclick();'}
+				]
+			}
+    	]
+	});
+	function camclick() {
+		navigator.camera.getPicture(onSuccess, onFail, { quality: 50 }); 
+		function onSuccess(imageData) {
+			var image = document.getElementById('monImage');
+			image.src = "data:image/jpeg;base64," + imageData;
+		}
+		function onFail(message) {
+			alert('Echec car : ' + message);
+		}
+	}
+</script>

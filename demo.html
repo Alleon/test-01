@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta  name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+		<link rel="stylesheet" href="./touch_ui/touchui.css" type="text/css" media="screen" charset="utf-8">
+		<script src="./touch_ui/touchui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript" charset="utf-8">	/* http://dhtmlx.com/touch/designer/#40xj63 */
+dhx.ui({ id: 'app', view: 'layout', height: 482, width: 322,
+	rows: [
+		{ view: 'layout', type: 'wide',
+			rows: [
+				{ view: 'toolbar', type: 'MainBar',
+					elements: [
+						{ view: 'input', label: '', popup: '', click: '', maxlength: '', type: 'text' },
+						{ view: 'button', label: 'Chercher', popup: '', click: '', css: '' }
+					], id: 'toolbar'
+				},
+				{ view: 'grid', id:'idgrid', datatype: 'json', url: 'http://192.168.1.54/htdocs/tests/serverside/data.php?format=JSON',
+					fields: [
+						{	id:"id",	label:"id",		width:40	},
+						{	id:"nom",	label:"Nom",	width:150	},
+						{	id:"prenom",label:"Prénom",	width:150	}
+					], select: true, header: true, scroll: true
+				},
+				{ view: 'toolbar', type: 'MainBar',
+					cols: [
+						{ view: 'button', label: 'suite', click:'$$("idgrid").loadNext(22);'},
+						{ view: 'button', label: 'début'},
+						{ view: 'button', label: '?? ' }
+					]
+				}
+			]
+		}
+	]
+});
+		</script>
+	</body>
+</html>
