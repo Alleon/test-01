@@ -17,12 +17,12 @@ function checkConnection() {
 	myLog('Type de connexion : ' + states[networkState], "<hr />");
 }
 function geoLocation() {
-    var watchID = null;
+    window.geoLocWatchID = null;
     function clearWatch() {
-        if (watchID != null && watchID!=0) {
-            navigator.geolocation.clearWatch(watchID);
-            watchID = 0;
+        if (window.geoLocWatchID != null && window.geoLocWatchID!=0) {
+            navigator.geolocation.clearWatch(window.geoLocWatchID);
         }
+        window.geoLocWatchID = 0;
     }
 	function onSuccess(position) {
 		myLog(
@@ -40,13 +40,14 @@ function geoLocation() {
     function onError(error) {
 		myLog('geoLocation error code : '    + error.code    + '\n' +
 			'message : ' + error.message + '\n', '<hr/>');
+		clearWatch();
     }
 
 
-	myLog('geoLocation ('+watchID+') ... test ... ', '<br/>');
+	myLog('geoLocation ('+window.geoLocWatchID+') ... test ... ', '<br/>');
 	clearWatch();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    watchID = navigator.geolocation.watchPosition(onSuccess, onError,  { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+    window.geoLocWatchID = navigator.geolocation.watchPosition(onSuccess, onError,  { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 
     // clear the watch that was started earlier
     // 
